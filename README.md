@@ -1,6 +1,6 @@
 # XcodeGen
 
-This step runs XcodeGen to generate a project.
+This Bitrise step runs XcodeGen to generate a project.
 
 
 ## How to use this Step

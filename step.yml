@@ -10,12 +10,12 @@
 title: |-
   XcodeGen
 summary: |
-  This step runs XcodeGen to generate a project.
+  This Bitrise step runs XcodeGen to generate a project.
 description: |
-  This step runs XcodeGen to generate a project.
-website: https://github.com/brandtdaniels/bitrise-step-xcodegen
-source_code_url: https://github.com/brandtdaniels/bitrise-step-xcodegen
-support_url: https://github.com/brandtdaniels/bitrise-step-xcodegen/issues
+  This Bitrise step runs XcodeGen to generate a project.
+website: https://github.com/brandtdaniels/xcodegen-bitrise
+source_code_url: https://github.com/brandtdaniels/xcodegen-bitrise
+support_url: https://github.com/brandtdaniels/xcodegen-bitrise/issues
 host_os_tags:
   - osx-10.10
   - ubuntu-16.04
@@ -29,9 +29,9 @@ host_os_tags:
 # You can find more information about project type tags in the Step Development Guideline:
 # https://github.com/bitrise-io/bitrise/blob/master/_docs/step-development-guideline.md
 #
-# project_type_tags:
-#   - ios
-#   - macos
+project_type_tags:
+  - ios
+  - macos
 #   - android
 #   - xamarin
 #   - react-native
@@ -51,12 +51,7 @@ run_if: ""
 
 deps:
   brew:
-  - name: git
-  - name: wget
-  apt_get:
-  - name: git
-  - name: wget
-
+  - name: xcodegen
 
 toolkit:
   bash:
@@ -64,24 +59,11 @@ toolkit:
 
 
 inputs:
-  - example_step_input: Default Value - you can leave this empty if you want to
+  - path_to_spec: Path to the project specification file.
     opts:
-      title: "Example Step Input"
-      summary: Summary. No more than 2-3 sentences.
+      title: "Path to Project Specification"
+      summary: "Path to project specification."
       description: |
-        Description of this input.
-
-        Can be Markdown formatted text.
+        Path to project specification.
       is_expand: true
       is_required: true
-      value_options: []
-
-outputs:
-  - EXAMPLE_STEP_OUTPUT:
-    opts:
-      title: "Example Step Output"
-      summary: Summary. No more than 2-3 sentences.
-      description: |
-        Description of this output.
-
-        Can be Markdown formatted text.
