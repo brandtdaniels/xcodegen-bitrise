@@ -1,0 +1,29 @@
+name: Bitrise
+options:
+  deploymentTarget:
+    iOS: "13.0"
+  defaultConfig: "Release"
+targets:
+  Bitrise:
+    platform: iOS
+    type: application
+    sources:
+      - Bitrise
+    scheme:
+      testTargets:
+        - BitriseTests
+        - BitriseUITests
+  BitriseTests:
+    platform: iOS
+    type: bundle.unit-test
+    sources:
+      - BitriseTests
+    dependencies:
+      - target: Bitrise
+  BitriseUITests:
+    platform: iOS
+    type: bundle.ui-testing
+    sources:
+      - BitriseUITests
+    dependencies:
+      - target: Bitrise

@@ -57,13 +57,41 @@ toolkit:
   bash:
     entry_file: step.sh
 
-
 inputs:
-  - path_to_spec: Path to the project specification file.
+  - spec_path: $BITRISE_SOURCE_DIR/project.yml
     opts:
-      title: "Path to Project Specification"
-      summary: "Path to project specification."
+      category: Config
+      title: "The path to the project spec file"
+      summary: "The path to the project spec file."
       description: |
-        Path to project specification.
+        The path to the project spec file. Defaults to project.yml
       is_expand: true
       is_required: true
+
+  - project_path: $BITRISE_SOURCE_DIR
+    opts:
+      category: Config
+      title: "The path to the directory where the project should be generated"
+      summary: "The path to the directory where the project should be generated."
+      description: |-
+        The path to the directory where the project should be generated. Defaults to the directory the spec is in. The filename is defined in the project spec
+      is_expand: true
+      is_required: false
+
+  - use_cache:
+    opts:
+      category: Config
+      title: "Use a cache for the xcodegen spec"
+      summary: "Use a cache for the xcodegen spec."
+      description: |-
+        Use a cache for the xcodegen spec. This will prevent unnecessarily generating the project if nothing has changed.
+      is_required: false
+
+  - cache_path:
+    opts:
+      category: Config
+      title: "Where the cache file will be loaded from and save to"
+      summary: "Where the cache file will be loaded from and save to."
+      description: |-
+        Where the cache file will be loaded from and save to. Defaults to ~/.xcodegen/cache/{SPEC_PATH_HASH}
+      is_required: false

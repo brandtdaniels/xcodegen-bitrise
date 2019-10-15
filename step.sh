@@ -1,22 +1,26 @@
 #!/bin/bash
 set -ex
 
-if ! [ -x "$(command -v xcodegen)" ]; then
-  echo "Installing XcodeGen." >&2
-  brew update && brew install xcodegen
+if [ -z "${spec_path}" ] ; then
+  echo " [!] Missing required input: spec_path"
+  exit 1
 fi
 
-echo "Generating project file..."
-xcodegen generate --spec $path_to_spec
+FLAGS=''
 
-# Options:
-#   --cache-path <value>     Where the cache file will be loaded from and save to. Defaults to ~/.xcodegen/cache/{SPEC_PATH_HASH}
-#   -c, --use-cache          Use a cache for the xcodegen spec. This will prevent unnecessarily generating the project if nothing has changed
-#   -h, --help               Show help information
-#   -p, --project <value>    The path to the directory where the project should be generated. Defaults to the directory the spec is in. The filename is defined in the project spec
-#   -q, --quiet              Suppress all informational and success output
-#   -s, --spec <value>       The path to the project spec file. Defaults to project.yml
+if [ -s "${project_path}" ] ; then
+  FLAGS=$FLAGS' --project '"${project_path}"  
+fi
 
+if [ "${use_cache}" = "yes" ] ; then
+  FLAGS=$FLAGS' --use-cache'
+fi
+
+if [ -s "${cache_path}" ] ; then
+  FLAGS=$FLAGS' --cache-path '"${cache_path}"  
+fi
+
+xcodegen generate --spec "${spec_path}" ${FLAGS}
 
 #
 # --- Export Environment Variables for other Steps:
