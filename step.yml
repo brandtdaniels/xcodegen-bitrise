@@ -8,7 +8,7 @@
 # - Bitrise CLI guides: http://devcenter.bitrise.io/bitrise-cli/
 
 title: |-
-  XcodeGen
+  Generate Xcode project
 summary: |
   This Bitrise step runs XcodeGen to generate a project.
 description: |
@@ -18,8 +18,7 @@ source_code_url: https://github.com/brandtdaniels/xcodegen-bitrise
 support_url: https://github.com/brandtdaniels/xcodegen-bitrise/issues
 host_os_tags:
   - osx-10.10
-  - ubuntu-16.04
-
+  
 # If this step should be available only for certain project types
 # just uncomment this `project_type_tags` section and include all the
 # project types supported by the step. If the step can be used for all
@@ -32,11 +31,8 @@ host_os_tags:
 project_type_tags:
   - ios
   - macos
-#   - android
-#   - xamarin
-#   - react-native
-#   - cordova
-#   - ionic
+  - tvos
+  - watchos
 
 # Type tags are used for categorizing steps, for easier step discovery in Step Libraries.
 # You can find more information about type tags in the Step Development Guideline:
@@ -60,7 +56,6 @@ toolkit:
 inputs:
   - spec_path: $BITRISE_SOURCE_DIR/project.yml
     opts:
-      category: Config
       title: "The path to the project spec file"
       summary: "The path to the project spec file."
       description: |
@@ -70,7 +65,6 @@ inputs:
 
   - project_path: $BITRISE_SOURCE_DIR
     opts:
-      category: Config
       title: "The path to the directory where the project should be generated"
       summary: "The path to the directory where the project should be generated."
       description: |-
@@ -80,7 +74,6 @@ inputs:
 
   - use_cache:
     opts:
-      category: Config
       title: "Use a cache for the xcodegen spec"
       summary: "Use a cache for the xcodegen spec."
       description: |-
@@ -89,7 +82,6 @@ inputs:
 
   - cache_path:
     opts:
-      category: Config
       title: "Where the cache file will be loaded from and save to"
       summary: "Where the cache file will be loaded from and save to."
       description: |-
