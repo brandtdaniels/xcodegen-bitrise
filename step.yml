@@ -71,19 +71,3 @@ inputs:
         The path to the directory where the project should be generated. Defaults to the directory the spec is in. The filename is defined in the project spec
       is_expand: true
       is_required: false
-
-  - use_cache:
-    opts:
-      title: "Use a cache for the xcodegen spec"
-      summary: "Use a cache for the xcodegen spec."
-      description: |-
-        Use a cache for the xcodegen spec. This will prevent unnecessarily generating the project if nothing has changed.
-      is_required: false
-
-  - cache_path:
-    opts:
-      title: "Where the cache file will be loaded from and save to"
-      summary: "Where the cache file will be loaded from and save to."
-      description: |-
-        Where the cache file will be loaded from and save to. Defaults to ~/.xcodegen/cache/{SPEC_PATH_HASH}
-      is_required: false

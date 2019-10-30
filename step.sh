@@ -12,14 +12,6 @@ if [ -s "${project_path}" ] ; then
   FLAGS=$FLAGS' --project '"${project_path}"  
 fi
 
-if [ "${use_cache}" = "yes" ] ; then
-  FLAGS=$FLAGS' --use-cache'
-fi
-
-if [ -s "${cache_path}" ] ; then
-  FLAGS=$FLAGS' --cache-path '"${cache_path}"  
-fi
-
 xcodegen generate --spec "${spec_path}" ${FLAGS}
 
 #
